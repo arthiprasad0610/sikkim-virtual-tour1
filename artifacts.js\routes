@@ -1,0 +1,24 @@
+import { Router } from 'express';
+import { artifacts } from '../seed/artifacts.js';
+
+const router = Router();
+
+router.get('/', (req, res) => {
+  const q = (req.query.q || '').toString().toLowerCase().trim();
+  const filtered = q
+    ? artifacts.filter(a =>
+        [
+          a.title,
+          a.description,
+          a.category,
+          a.monastery,
+          a.historicalContext
+        ]
+          .filter(Boolean)
+          .some(v => v.toLowerCase().includes(q))
+      )
+    : artifacts;
+  res.json(filtered);
+});
+
+export default router;
