@@ -1,0 +1,6 @@
+Sikkim Heritage 360 - Server
+
+- Start: npm install && npm run dev
+- API:
+  - GET /api/health
+  - GET /api/artifacts?q=<search>
